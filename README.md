@@ -17,8 +17,8 @@ Recommended run during night afk since small mob do take some time to respawn
 1. Go to Upper right <>Code
 2. Download Zip
 3. Extract the zipped folder at anywhere
-4. Execute the main.exe
-5. Or Run main.py using pycharm
+4. Execute the main.exe (some update may not reflect on exe)
+5. Or Run main.py using pycharm (Recommended) 
 
 ## Setup
 * Set the window name to Phone
