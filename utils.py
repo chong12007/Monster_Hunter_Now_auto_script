@@ -11,6 +11,8 @@ import pyautogui
 import cv2
 
 pyautogui.FAILSAFE = False
+
+
 def detect_app():
     app_titles = ["Vysor"]
 
@@ -72,7 +74,10 @@ def app_not_found(window):
     window.refresh()
     pass
 
+
 msg_history = ''
+
+
 def update_gui_msg(msg, window):
     global msg_history
 
@@ -80,11 +85,13 @@ def update_gui_msg(msg, window):
     window.Element('_Multiline_').Update(msg_history, font=("Helvetica", 10, "bold"))
     window.refresh()
 
+
 def click(coordinate, msg, window):
     update_gui_msg(msg, window)
     window.refresh()
     pyautogui.click(coordinate[0], coordinate[1], button="left")
     time.sleep(1)
+
 
 def get_icon_coordinate_fullscreen(icon_path):
     screenshot = pyautogui.screenshot()
@@ -106,8 +113,7 @@ def get_icon_coordinate_fullscreen(icon_path):
         top_left = (min_loc[0], min_loc[1])
         bottom_right = (top_left[0] + template.shape[1], top_left[1] + template.shape[0])
         center = ((top_left[0] + bottom_right[0]) // 2, (top_left[1] + bottom_right[1]) // 2)
-        click_coordinate = (center[0] , center[1] )
+        click_coordinate = (center[0], center[1])
         return click_coordinate
     else:
         return 0, 0
-
