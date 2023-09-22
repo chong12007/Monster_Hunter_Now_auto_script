@@ -1,11 +1,5 @@
-import webbrowser
-
-import PySimpleGUI as sg
-import pyautogui
 import time
 import pygetwindow as gw
-import PySimpleGUI as sg
-from pygetwindow import Win32Window
 import ctypes
 import pyautogui
 import cv2
@@ -14,7 +8,7 @@ pyautogui.FAILSAFE = False
 
 
 def detect_app():
-    app_titles = ["Phone","phone"]
+    app_titles = ["Phone", "phone"]
 
     # Find the window with a matching title
     app_window = None
@@ -39,22 +33,24 @@ def adjust_screen(window):
         # Resize the window
         app_window.resizeTo(400, 1025)
 
-        # Get Screen Center
+        # Get screen dimensions
         screen_width = ctypes.windll.user32.GetSystemMetrics(0)
         screen_height = ctypes.windll.user32.GetSystemMetrics(1)
 
         window_width = app_window.width
         window_height = app_window.height
 
-        screen_center_x = (screen_width - window_width) // 2
+        # Calculate the right center position
         screen_center_y = (screen_height - window_height) // 2
+        screen_right_x = screen_width - window_width - 30
 
         app_window.activate()
 
         # Select app
         time.sleep(1)
-        # Move the window to the center of the screen
-        app_window.moveTo(screen_center_x, screen_center_y)
+
+        # Move the window to the right center of the screen
+        app_window.moveTo(screen_right_x, screen_center_y)
 
         window["row1"].update("Screen Adjusted!!", text_color="#509296", font=("Helvetica", 16, "bold"),
                               background_color="#f0f0f0")

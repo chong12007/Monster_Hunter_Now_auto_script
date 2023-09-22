@@ -28,8 +28,6 @@ def display_ui():
 
     window = sg.Window("MHN", layout, location=window_location, keep_on_top=True, size=window_size)
 
-    global window
-
     def ui_content(window):
         # Infinite Looping
         while True:
@@ -38,7 +36,7 @@ def display_ui():
             if event == "start":
                 start_farm(window)
 
-            # if click reset
+            # if click adjust screen
             if event == "adjust_screen":
                 window["row1"].update("Adjust Screen...")
                 window.refresh()
@@ -126,7 +124,7 @@ def start_farm(window):
 def slay_mob(coordinate, mob_count, window):
     utils.click(coordinate, "Mob Found\n", window)
 
-    for i in range(4):
+    for i in range(10):
         pyautogui.doubleClick(coordinate[0], coordinate[1], button="left")
         time.sleep(0.5)
 
