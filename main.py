@@ -76,8 +76,8 @@ def start_farm(window):
             while True:
                 i += 1
                 if i > icon_to_detect:
-                    utils.update_gui_msg("Sleep 100 seconds\n", window)
-                    time.sleep(100)
+                    utils.update_gui_msg("Sleep 200 seconds\n", window)
+                    time.sleep(200)
                     i = 0
                     continue
 
