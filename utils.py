@@ -14,7 +14,7 @@ pyautogui.FAILSAFE = False
 
 
 def detect_app():
-    app_titles = ["Vysor"]
+    app_titles = ["Phone","phone"]
 
     # Find the window with a matching title
     app_window = None
@@ -68,9 +68,9 @@ def adjust_screen(window):
 
 def app_not_found(window):
     window["row1"].update("Error :(", text_color="red", font=("Helvetica", 16, "bold"), background_color="#f0f0f0")
-    window["row2"].update("Unable to detect Phone", text_color="red", font=("Helvetica", 12, "bold"),
+    window["row2"].update("Unable to detect Phone Screen", text_color="red", font=("Helvetica", 12, "bold"),
                           background_color="#f0f0f0")
-    update_gui_msg("Supported Emulator :\nVysor(Tested)\n\n", window)
+    update_gui_msg("Supported Emulator :\nVysor(Tested)\nRemember to change the name to Phone!!\n\n", window)
     window.refresh()
     pass
 
