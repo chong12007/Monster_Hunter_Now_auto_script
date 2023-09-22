@@ -1,5 +1,5 @@
 # Only Work For PC
-Recommanded on night afk since small mob do take some time to respawn
+Recommended run during night afk since small mob do take some time to respawn
 
 ## How to use PC to play
 1. Download Vysor https://www.vysor.io/
