@@ -102,7 +102,7 @@ def get_icon_coordinate_fullscreen(icon_path):
 
     # Get the matched location within the ROI
     # Set a threshold for the match
-    threshold = 0.1
+    threshold = 0.5
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     if min_val < threshold:
