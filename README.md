@@ -6,7 +6,8 @@ Recommended run during night afk since small mob do take some time to respawn
 2. Connect your phone to pc with usb
 3. Open Developer mode and able usb debugger
 4.  Then you should able access your phone through pc mouse
-5.  Then run the code
+5.  Zoom out until only monster icon were show
+6.  Then run the code
 
 ## What it Does
 * Slay the small mobs surrounding you.
