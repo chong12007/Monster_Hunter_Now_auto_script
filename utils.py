@@ -102,14 +102,15 @@ def get_icon_coordinate_fullscreen(icon_path):
 
     # Get the matched location within the ROI
     # Set a threshold for the match
-    threshold = 0.5
+    threshold = 0.03
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     if min_val < threshold:
         top_left = (min_loc[0], min_loc[1])
         bottom_right = (top_left[0] + template.shape[1], top_left[1] + template.shape[0])
         center = ((top_left[0] + bottom_right[0]) // 2, (top_left[1] + bottom_right[1]) // 2)
-        click_coordinate = (center[0], center[1])
+        click_coordinate = (center[0] , center[1] )
         return click_coordinate
     else:
         return 0, 0
+

@@ -66,12 +66,9 @@ def display_ui():
 
 
 def farm_routine(window):
-    mob_count = 0
-    material_count = 0
-
-    window["row1"].update(f"Mob Slayed : {mob_count}", text_color="#509296", font=("Helvetica", 16, "bold"),
+    window["row1"].update(f"Mob Slayed : 0", text_color="#509296", font=("Helvetica", 16, "bold"),
                           background_color="#f0f0f0")
-    window["row2"].update(f"Material Collected : {material_count}", text_color="#509296",
+    window["row2"].update(f"Material Collected : 0", text_color="#509296",
                           font=("Helvetica", 16, "bold"),
                           background_color="#f0f0f0")
     window.refresh()
@@ -80,45 +77,32 @@ def farm_routine(window):
         i = 0
         error_occur_count = 0
         icon_to_detect = 3
+        mob_count = 0
+        material_count = 0
 
-        def find_mob(i, mob_count, window):
+        def find_mob(i, window):
             icon_path = f"img/monster{i}.png"
             coordinate = utils.get_icon_coordinate_fullscreen(icon_path)
             if coordinate[0] != 0 and coordinate[1] <= 600 and coordinate[1] >= 400:
                 # Mob found
-                def slay_mob(coordinate, mob_count, window):
-                    utils.click(coordinate, "Mob Found\n", window)
+                utils.click(coordinate, "Mob Found\n", window)
+                for i in range(8):
+                    pyautogui.doubleClick(coordinate[0], coordinate[1], button="left")
+                    time.sleep(0.8)
+                time.sleep(5)
+                return True
 
-                    for i in range(8):
-                        pyautogui.doubleClick(coordinate[0], coordinate[1], button="left")
-                        time.sleep(0.8)
-
-                slay_mob(coordinate, mob_count, window)
-                mob_count += 1
-                window["row1"].update(f"Mob killed : {mob_count}", text_color="#509296",
-                                      font=("Helvetica", 16, "bold"),
-                                      background_color="#f0f0f0")
-                window.refresh()
-                time.sleep(10)
-                return mob_count
-
-        def find_material(i, material_count, window):
+        def find_material(i, window):
             icon_path = f"img/material{i}.png"
             coordinate = utils.get_icon_coordinate_fullscreen(icon_path)
             if coordinate[0] != 0 and coordinate[1] <= 600 and coordinate[1] >= 400:
-                # Mob found
-                utils.click(coordinate, "Material Found", window)
+                # Material found
+                utils.click(coordinate, "Material Found\n", window)
                 for j in range(3):
                     pyautogui.doubleClick(coordinate)
                     time.sleep(0.5)
-
-                material_count += 1
-                window["row2"].update(f"Material Collected : {material_count}", text_color="#509296",
-                                      font=("Helvetica", 16, "bold"),
-                                      background_color="#f0f0f0")
-                window.refresh()
-                time.sleep(10)
-                return material_count
+                time.sleep(5)
+                return True
 
         # Keep loop find monster and material until quit program
         while True:
@@ -129,24 +113,42 @@ def farm_routine(window):
                     utils.click(coordinate, "Escape from big mob...\n", window)
                     time.sleep(5)
 
-                utils.update_gui_msg("Sleep 100 seconds\n", window)
-                time.sleep(100)
+                utils.update_gui_msg("Sleep 200 seconds\n", window)
+                time.sleep(200)
                 i = 0
                 continue
 
-            mob_count = find_mob(i, mob_count, window)
-            time.sleep(5)
-            material_count = find_material(i, material_count, window)
+            mob_found = find_mob(i, window)
+            if mob_found:
+                mob_count += 1
+                window["row1"].update(f"Mob killed : {mob_count}", text_color="#509296",
+                                      font=("Helvetica", 16, "bold"),
+                                      background_color="#f0f0f0")
+                window.refresh()
+                i = 0
+
+            material_found = find_material(i, window)
+            if material_found:
+                material_count += 1
+                window["row2"].update(f"Material Collected : {material_count}", text_color="#509296",
+                                      font=("Helvetica", 16, "bold"),
+                                      background_color="#f0f0f0")
+                window.refresh()
+                i = 0
+
+
+
     except Exception as e:
-        try:
-            print(e)
-            utils.update_gui_msg("Eror occur:Not staying at main screen\n", window)
-            coordinate = utils.get_icon_coordinate_fullscreen("img/go_back_icon.png")
-            if 600 < coordinate[1] < 950:
-                utils.click(coordinate, "Escape from big mob...\n", window)
-                time.sleep(5)
-        except Exception:
-            pass
+        print(e)
+        # try:
+        #     print(e)
+        #     utils.update_gui_msg("Eror occur:Not staying at main screen\n", window)
+        #     coordinate = utils.get_icon_coordinate_fullscreen("img/go_back_icon.png")
+        #     if 600 < coordinate[1] < 950:
+        #         utils.click(coordinate, "Escape from big mob...\n", window)
+        #         time.sleep(5)
+        # except Exception:
+        #     pass
 
 
 def start_farm(window):
@@ -158,7 +160,4 @@ def start_farm(window):
 
 
 if __name__ == '__main__':
-    # display_ui()
-    icon_path = f"img/material2.png"
-    coordinate = utils.get_icon_coordinate_fullscreen(icon_path)
-    print(coordinate)
+    display_ui()
