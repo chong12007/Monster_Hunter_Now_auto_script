@@ -86,9 +86,9 @@ def farm_routine(window):
             if coordinate[0] != 0 and coordinate[1] <= 600 and coordinate[1] >= 400:
                 # Mob found
                 utils.click(coordinate, "Mob Found\n", window)
-                for i in range(8):
+                for i in range(10):
                     pyautogui.doubleClick(coordinate[0], coordinate[1], button="left")
-                    time.sleep(0.8)
+                    time.sleep(0.6)
                 time.sleep(5)
                 return True
 
@@ -125,7 +125,7 @@ def farm_routine(window):
                                       font=("Helvetica", 16, "bold"),
                                       background_color="#f0f0f0")
                 window.refresh()
-                i = 0
+                i = 1
 
             material_found = find_material(i, window)
             if material_found:
@@ -134,12 +134,13 @@ def farm_routine(window):
                                       font=("Helvetica", 16, "bold"),
                                       background_color="#f0f0f0")
                 window.refresh()
-                i = 0
+                i = 1
 
 
 
     except Exception as e:
         print(e)
+        pass
         # try:
         #     print(e)
         #     utils.update_gui_msg("Eror occur:Not staying at main screen\n", window)
