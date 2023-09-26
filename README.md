@@ -26,7 +26,7 @@ Recommended run during night afk since small mob do take some time to respawn
 ---
 ![window name image](github_img/phone.png)
 ---
-![setting}(github_img/setting.png)
+![setting](github_img/setting.png)
 ---
 ![name](github_img/name_setting.png)
 ---
