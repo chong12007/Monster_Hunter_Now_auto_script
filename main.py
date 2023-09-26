@@ -101,7 +101,6 @@ def farm_routine(window):
                 for j in range(3):
                     pyautogui.doubleClick(coordinate)
                     time.sleep(0.5)
-                time.sleep(5)
                 return True
 
         # Keep loop find monster and material until quit program
