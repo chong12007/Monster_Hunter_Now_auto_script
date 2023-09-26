@@ -24,7 +24,11 @@ Recommended run during night afk since small mob do take some time to respawn
 ## Setup
 * Set the window name to Phone
 ---
-![window name image](github_img/name_setting.png)
+![window name image](github_img/phone.png)
+---
+![setting}(github_img/setting.png)
+---
+![name](github_img/name_setting.png)
 ---
  
 
@@ -33,3 +37,5 @@ Recommended run during night afk since small mob do take some time to respawn
 * Set your phone's graphics to the lowest settings if you have a potato phone
 * Make sure to use your strongest weapon
 * Clicking the x on top right corner to terminate the program
+
+
