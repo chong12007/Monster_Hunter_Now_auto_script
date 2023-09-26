@@ -102,9 +102,10 @@ def get_icon_coordinate_fullscreen(icon_path):
 
     # Get the matched location within the ROI
     # Set a threshold for the match
-    threshold = 0.03
+    threshold = 0.02
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+    print(min_val)
     if min_val < threshold:
         top_left = (min_loc[0], min_loc[1])
         bottom_right = (top_left[0] + template.shape[1], top_left[1] + template.shape[0])
@@ -114,3 +115,5 @@ def get_icon_coordinate_fullscreen(icon_path):
     else:
         return 0, 0
 
+if __name__ == '__main__':
+    coordinate = get_icon_coordinate_fullscreen("img/monster4.png")

@@ -76,7 +76,7 @@ def farm_routine(window):
     try:
         i = 0
         error_occur_count = 0
-        icon_to_detect = 3
+        icon_to_detect = 4
         mob_count = 0
         material_count = 0
 
@@ -89,7 +89,7 @@ def farm_routine(window):
                 for i in range(10):
                     pyautogui.doubleClick(coordinate[0], coordinate[1], button="left")
                     time.sleep(0.6)
-                time.sleep(5)
+
                 return True
 
         def find_material(i, window):
@@ -115,7 +115,7 @@ def farm_routine(window):
 
                 utils.update_gui_msg("Sleep 200 seconds\n", window)
                 time.sleep(200)
-                i = 0
+                i = 1
                 continue
 
             mob_found = find_mob(i, window)
@@ -125,21 +125,26 @@ def farm_routine(window):
                                       font=("Helvetica", 16, "bold"),
                                       background_color="#f0f0f0")
                 window.refresh()
-                i = 1
+                i = 0
+                time.sleep(3)
+                continue
 
-            material_found = find_material(i, window)
-            if material_found:
-                material_count += 1
-                window["row2"].update(f"Material Collected : {material_count}", text_color="#509296",
-                                      font=("Helvetica", 16, "bold"),
-                                      background_color="#f0f0f0")
-                window.refresh()
-                i = 1
+            if i <= 3 :
+                material_found = find_material(i, window)
+                if material_found:
+                    material_count += 1
+                    window["row2"].update(f"Material Collected : {material_count}", text_color="#509296",
+                                          font=("Helvetica", 16, "bold"),
+                                          background_color="#f0f0f0")
+                    window.refresh()
+                    i = 0
+                    time.sleep(3)
+                    continue
 
 
 
     except Exception as e:
-        print(e)
+
         pass
         # try:
         #     print(e)
