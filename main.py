@@ -76,7 +76,7 @@ def farm_routine(window):
     try:
         i = 0
         error_occur_count = 0
-        icon_to_detect = 4
+        icon_to_detect = 5
         mob_count = 0
         material_count = 0
 
@@ -106,6 +106,7 @@ def farm_routine(window):
 
         # Keep loop find monster and material until quit program
         while True:
+
             i += 1
             if i > icon_to_detect:
                 coordinate = utils.get_icon_coordinate_fullscreen("img/go_back_icon.png")
@@ -129,7 +130,7 @@ def farm_routine(window):
                 time.sleep(3)
                 continue
 
-            if i <= 3 :
+            if i <= 3:
                 material_found = find_material(i, window)
                 if material_found:
                     material_count += 1
@@ -140,7 +141,6 @@ def farm_routine(window):
                     i = 0
                     time.sleep(3)
                     continue
-
 
 
     except Exception as e:
