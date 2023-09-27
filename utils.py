@@ -90,7 +90,7 @@ def click(coordinate, msg, window):
 
 
 def get_icon_coordinate_fullscreen(icon_path):
-    screenshot = pyautogui.screenshot()
+    screenshot = pyautogui.screenshot(region=(1450, 0, 350, 1000))
     screenshot.save("img/screenshot.png")
     screenshot_path = "img/screenshot.png"
     screenshot = cv2.imread(screenshot_path)
@@ -102,7 +102,7 @@ def get_icon_coordinate_fullscreen(icon_path):
 
     # Get the matched location within the ROI
     # Set a threshold for the match
-    threshold = 0.04
+    threshold = 0.05
 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
     print(min_val)
@@ -110,10 +110,39 @@ def get_icon_coordinate_fullscreen(icon_path):
         top_left = (min_loc[0], min_loc[1])
         bottom_right = (top_left[0] + template.shape[1], top_left[1] + template.shape[0])
         center = ((top_left[0] + bottom_right[0]) // 2, (top_left[1] + bottom_right[1]) // 2)
-        click_coordinate = (center[0] , center[1] )
+        click_coordinate = (center[0] + 1450 , center[1]  )
+        return click_coordinate
+    else:
+        return 0, 0
+
+def get_go_back_coordinate():
+    screenshot = pyautogui.screenshot(region=(1450, 0, 350, 1000))
+    screenshot.save("img/screenshot.png")
+    screenshot_path = "img/screenshot.png"
+    screenshot = cv2.imread(screenshot_path)
+
+    # Load template image
+
+    icon_path = "img/go_back_icon.png"
+    template = cv2.imread(icon_path)
+    # Perform template matching on the ROI
+    result = cv2.matchTemplate(screenshot, template, cv2.TM_SQDIFF_NORMED)
+
+    # Get the matched location within the ROI
+    # Set a threshold for the match
+    threshold = 0.01
+
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+    print(min_val)
+    if min_val < threshold:
+        top_left = (min_loc[0], min_loc[1])
+        bottom_right = (top_left[0] + template.shape[1], top_left[1] + template.shape[0])
+        center = ((top_left[0] + bottom_right[0]) // 2, (top_left[1] + bottom_right[1]) // 2)
+        click_coordinate = (center[0] + 1450 , center[1]  )
         return click_coordinate
     else:
         return 0, 0
 
 if __name__ == '__main__':
     coordinate = get_icon_coordinate_fullscreen("img/material3.png")
+    print(coordinate)

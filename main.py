@@ -108,8 +108,8 @@ def farm_routine(window):
 
             i += 1
             if i > icon_to_detect:
-                coordinate = utils.get_icon_coordinate_fullscreen("img/go_back_icon.png")
-                if 600 < coordinate[1] < 950:
+                coordinate = utils.get_go_back_coordinate()
+                if 600 < coordinate[1] < 950 and coordinate[0] <= 1600:
                     utils.click(coordinate, "Escape from big mob...\n", window)
                     time.sleep(5)
 
@@ -143,17 +143,7 @@ def farm_routine(window):
 
 
     except Exception as e:
-
         pass
-        # try:
-        #     print(e)
-        #     utils.update_gui_msg("Eror occur:Not staying at main screen\n", window)
-        #     coordinate = utils.get_icon_coordinate_fullscreen("img/go_back_icon.png")
-        #     if 600 < coordinate[1] < 950:
-        #         utils.click(coordinate, "Escape from big mob...\n", window)
-        #         time.sleep(5)
-        # except Exception:
-        #     pass
 
 
 def start_farm(window):
