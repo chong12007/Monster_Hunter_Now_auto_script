@@ -94,7 +94,7 @@ def farm_routine(window):
 
         def find_material(i, window):
             icon_path = f"img/material{i}.png"
-            coordinate = utils.get_icon_coordinate_fullscreen(icon_path)
+            coordinate = utils.get_icon_coordinate_more_accurate(icon_path)
             if coordinate[0] != 0 and coordinate[1] <= 600 and coordinate[1] >= 400:
                 # Material found
                 utils.click(coordinate, "Material Found\n", window)
@@ -108,7 +108,7 @@ def farm_routine(window):
 
             i += 1
             if i > icon_to_detect:
-                coordinate = utils.get_go_back_coordinate()
+                coordinate = utils.get_icon_coordinate_more_accurate("img/go_back_icon.png")
                 if 600 < coordinate[1] < 950 and coordinate[0] <= 1600:
                     utils.click(coordinate, "Escape from big mob...\n", window)
                     time.sleep(5)
